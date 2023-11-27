@@ -44,6 +44,12 @@ def call() {
                             buildAndPublish()
                         }
                     }
+
+                    stage('Trigger deploy job') {
+                        steps {
+                            triggerDeploy()
+                        }
+                    }
                 }
 
                 post {

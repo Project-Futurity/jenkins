@@ -1,0 +1,31 @@
+@Library('pipelineLib') _
+
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'imageTag', trim: true, description: 'Image tag to be deployed')
+        string(name: 'imageName', trim: true, description: 'Image name to be deployed')
+    }
+
+    options {
+        disableConcurrentBuilds()
+    }
+
+    stages {
+        stage('Validate') {
+            steps {
+                script {
+                    required(params.imageName, 'Image name is not present')
+                    required(params.imageTag, 'Image tag is not present')
+                }
+            }
+        }
+    }
+}
+
+def required(def param, def errorMessage) {
+    if (!param) {
+        error(errorMessage)
+    }
+}
