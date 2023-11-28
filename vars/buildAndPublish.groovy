@@ -1,6 +1,9 @@
 def call() {
     docker.withRegistry('', 'docker-creds') {
-        def image = docker.build(dockerUtils.getFullImageName())
+        def imageName = dockerUtils.getFullImageName()
+        def image = docker.build(imageName)
+
+        echo "Pushing the image ${imageName}"
         image.push()
     }
 }

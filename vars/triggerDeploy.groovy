@@ -1,12 +1,14 @@
 import groovy.transform.Field
 
 @Field def JOBS_MAP = [
-        "api-gateway": "Api Gateway Service Deploy"
+        'api-gateway': 'Api Gateway Service Deploy'
 ]
 
 def call() {
     def serviceName = mavenUtils.getServiceName()
     def jobName = JOBS_MAP.get(serviceName)
+
+    echo "Triggering job: ${jobName}"
 
     build(
             job: jobName,

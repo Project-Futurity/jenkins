@@ -1,4 +1,4 @@
-@Library('pipelineLib') _
+@Library('futurityPipelineLib') _
 
 pipeline {
     agent any
@@ -18,6 +18,50 @@ pipeline {
                 script {
                     required(params.imageName, 'Image name is not present')
                     required(params.imageTag, 'Image tag is not present')
+                }
+            }
+        }
+
+        /*stage('Deploy') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    input(message: "Deploy '${imageTag}'?", ok: 'Deploy')
+                }
+            }
+        }*/
+
+        stage('Deploying') {
+
+            stages {
+                stage('Preparing workspace') {
+                    steps {
+                        script {
+                            withSsh {
+                                sshUtils.prepareWorkspace(it)
+                            }
+                        }
+                    }
+                }
+
+                stage('Up service') {
+                    steps {
+                        script {
+                            withSsh {
+                                sshUtils.upService(it, params.imageName, params.imageTag)
+                            }
+                        }
+                    }
+                }
+            }
+
+            post {
+                always {
+                    script {
+                        withSsh {
+                            echo 'Cleaning up'
+                            sshUtils.clearWorkspace(it)
+                        }
+                    }
                 }
             }
         }
