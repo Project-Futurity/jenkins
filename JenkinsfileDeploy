@@ -1,7 +1,7 @@
 @Library('futurityPipelineLib') _
 
 pipeline {
-    agent any
+    agent none
 
     parameters {
         string(name: 'imageTag', trim: true, description: 'Image tag to be deployed')
@@ -22,15 +22,16 @@ pipeline {
             }
         }
 
-        /*stage('Deploy') {
+        stage('Deploy') {
             steps {
                 timeout(time: 5, unit: 'MINUTES') {
-                    input(message: "Deploy '${imageTag}'?", ok: 'Deploy')
+                    input(message: "Deploy '${imageName}:${imageTag}'?", ok: 'Deploy')
                 }
             }
-        }*/
+        }
 
         stage('Deploying') {
+            agent any
 
             stages {
                 stage('Preparing workspace') {
