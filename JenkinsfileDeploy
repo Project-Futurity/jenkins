@@ -22,10 +22,10 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Approve Deploy') {
             steps {
                 timeout(time: 5, unit: 'MINUTES') {
-                    input(message: "Deploy '${imageName}:${imageTag}'?", ok: 'Deploy')
+                    input(message: "Deploy '${params.imageName}:${params.imageTag}'?", ok: 'Deploy')
                 }
             }
         }

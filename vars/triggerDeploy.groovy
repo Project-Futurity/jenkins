@@ -1,14 +1,15 @@
 import groovy.transform.Field
 
 @Field def JOBS_MAP = [
-        'api-gateway': 'Api Gateway Service Deploy'
+        'api-gateway': 'Api Gateway Service Deploy',
+        'futurity-telegram-bot': 'Futurity Telegram Bot Deploy'
 ]
 
 def call() {
-    def serviceName = mavenUtils.getServiceName()
+    def serviceName = dockerUtils.getImageName()
     def jobName = JOBS_MAP.get(serviceName)
 
-    echo "Triggering job: ${jobName}"
+    echo "Triggering job: ${jobName} with image ${serviceName}"
 
     build(
             job: jobName,

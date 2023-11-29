@@ -10,7 +10,7 @@ def prepareWorkspace(def sshContext) {
 }
 
 def clearWorkspace(def sshContext) {
-    sshCommand remote: sshContext, sshCommand: "rm -r -f ${WORKSPACE}"
+    sshCommand remote: sshContext, command: "rm -r -f ${WORKSPACE}"
 }
 
 def upService(def sshContext, def imageName, def imageTag) {
