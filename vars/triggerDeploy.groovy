@@ -4,7 +4,8 @@ import groovy.transform.Field
         'api-gateway': 'Api Gateway Service Deploy',
         'futurity-telegram-bot': 'Futurity Telegram Bot Deploy',
         'project-service': 'Project Service Deploy',
-        'notification-service': 'Notification Service Deploy'
+        'notification-service': 'Notification Service Deploy',
+        'auth-service': 'Auth Service Deploy'
 ]
 
 def call() {
