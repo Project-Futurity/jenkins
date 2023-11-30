@@ -5,7 +5,8 @@ import groovy.transform.Field
         'futurity-telegram-bot': 'Futurity Telegram Bot Deploy',
         'project-service': 'Project Service Deploy',
         'notification-service': 'Notification Service Deploy',
-        'auth-service': 'Auth Service Deploy'
+        'auth-service': 'Auth Service Deploy',
+        'user-service': 'User Service Deploy'
 ]
 
 def call() {
