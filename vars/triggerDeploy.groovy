@@ -2,7 +2,8 @@ import groovy.transform.Field
 
 @Field def JOBS_MAP = [
         'api-gateway': 'Api Gateway Service Deploy',
-        'futurity-telegram-bot': 'Futurity Telegram Bot Deploy'
+        'futurity-telegram-bot': 'Futurity Telegram Bot Deploy',
+        'project-service': 'Project Service Deploy'
 ]
 
 def call() {
